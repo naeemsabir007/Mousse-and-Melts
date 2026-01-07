@@ -1,0 +1,11 @@
+# Mousse & Melts - Robots.txt
+# https://www.moussenmelts.com
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://www.moussenmelts.com/sitemap.xml
+
+# Crawl-delay (optional, for politeness)
+Crawl-delay: 1
