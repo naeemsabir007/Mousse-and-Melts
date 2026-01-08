@@ -1,7 +1,6 @@
 import React from 'react';
 import { StateProvider, useStore } from './context/StateContext';
 import Navbar from './components/Navbar';
-import CartDrawer from './components/CartDrawer';
 import AddToCartNotification from './components/AddToCartNotification';
 import Home from './pages/Home';
 import Admin from './pages/Admin';
@@ -43,7 +42,6 @@ const AppContent: React.FC = () => {
       {!isAdminRoute && (
         <>
           <Navbar />
-          <CartDrawer />
           <AddToCartNotification item={lastAddedItem} onClose={clearLastAddedItem} />
         </>
       )}

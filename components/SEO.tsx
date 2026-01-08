@@ -12,7 +12,7 @@ interface SEOProps {
 // Business details for JSON-LD Schema
 const BUSINESS_INFO = {
     name: "Mousse and Melts",
-    phone: "+923214944712",
+    phone: "+923290033863",
     address: {
         street: "Johar Town CII, Phase 1, near UMT",
         city: "Lahore",

@@ -121,8 +121,8 @@ const Hero: React.FC = () => {
           {/* Right: The Arch Portal Visual */}
           <div className="flex-1 w-full relative flex justify-center lg:justify-end mt-8 lg:mt-0">
 
-            {/* Rotating Badge */}
-            <div className="absolute -top-6 md:-top-12 right-0 md:-right-12 z-20 scale-75 md:scale-100 hidden sm:block">
+            {/* Rotating Badge - Visible on all devices */}
+            <div className="absolute -top-2 right-2 sm:-top-6 sm:right-0 md:-top-12 md:-right-12 z-20 scale-50 sm:scale-75 md:scale-100">
               <div className="relative w-32 h-32 md:w-40 md:h-40 flex items-center justify-center">
                 <div className="absolute inset-0 animate-spin-slow">
                   <svg viewBox="0 0 100 100" width="100%" height="100%">
@@ -136,7 +136,7 @@ const Hero: React.FC = () => {
                     </text>
                   </svg>
                 </div>
-                <div className="text-2xl">🍰</div>
+                <div className="text-xl sm:text-2xl">🍰</div>
               </div>
             </div>
 

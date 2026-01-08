@@ -4,7 +4,7 @@ import { X, Minus, Plus, ShoppingBag, MessageCircle } from 'lucide-react';
 import { useStore } from '../context/StateContext';
 
 const CartDrawer: React.FC = () => {
-  const { isCartOpen, toggleCart, cart, removeFromCart, updateQuantity, recordCheckout } = useStore();
+  const { isCartOpen, toggleCart, cart, removeFromCart, updateQuantity, recordCheckout, navigate } = useStore();
 
   const subtotal = cart.reduce((acc, item) => {
     const price = item.salePrice || item.price;
@@ -25,7 +25,7 @@ const CartDrawer: React.FC = () => {
 
     // 3. Open WhatsApp
     const encodedMessage = encodeURIComponent(message);
-    window.open(`https://wa.me/923214944712?text=${encodedMessage}`, '_blank');
+    window.open(`https://wa.me/923290033863?text=${encodedMessage}`, '_blank');
   };
 
   return (
@@ -105,18 +105,24 @@ const CartDrawer: React.FC = () => {
             </div>
 
             {cart.length > 0 && (
-              <div className="p-6 bg-white border-t border-gray-100">
-                <div className="flex justify-between items-center mb-6">
+              <div className="p-6 bg-white border-t border-gray-100 space-y-3">
+                <div className="flex justify-between items-center mb-4">
                   <span className="text-chocolate/70 font-medium">Subtotal</span>
                   <span className="font-bold text-3xl text-chocolate font-serif">Rs. {subtotal.toFixed(2)}</span>
                 </div>
                 <button
-                  onClick={handleCheckout}
-                  className="w-full bg-[#25D366] text-white py-4 rounded-xl font-bold text-lg hover:brightness-110 transition-all transform active:scale-95 shadow-lg flex items-center justify-center gap-2"
+                  onClick={() => { toggleCart(false); navigate('/cart'); }}
+                  className="w-full bg-gradient-to-r from-chocolate to-velvet-red text-white py-4 rounded-xl font-bold text-lg hover:shadow-xl transition-all transform active:scale-95 shadow-lg flex items-center justify-center gap-2"
                 >
-                  <MessageCircle size={24} /> Checkout via WhatsApp
+                  <ShoppingBag size={24} /> View Cart & Checkout
                 </button>
-                <p className="text-center text-[10px] text-gray-400 mt-2">You will be redirected to WhatsApp to confirm your order.</p>
+                <button
+                  onClick={handleCheckout}
+                  className="w-full bg-[#25D366] text-white py-3 rounded-xl font-bold text-base hover:brightness-110 transition-all transform active:scale-95 shadow-md flex items-center justify-center gap-2"
+                >
+                  <MessageCircle size={20} /> Quick Checkout via WhatsApp
+                </button>
+                <p className="text-center text-[10px] text-gray-400 mt-1">Apply coupons and see recommendations in cart</p>
               </div>
             )}
           </motion.div>

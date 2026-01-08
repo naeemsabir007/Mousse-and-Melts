@@ -87,7 +87,7 @@ const Checkout: React.FC = () => {
         message += `Thank you! 🎂`;
 
         const encodedMessage = encodeURIComponent(message);
-        window.open(`https://wa.me/923214944712?text=${encodedMessage}`, '_blank');
+        window.open(`https://wa.me/923290033863?text=${encodedMessage}`, '_blank');
 
         // Clear cart after checkout
         clearCart();
@@ -123,9 +123,9 @@ const Checkout: React.FC = () => {
     }
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-cream via-soft-pink/10 to-cream pt-32 pb-20">
+        <div className="min-h-screen bg-gradient-to-br from-cream via-soft-pink/10 to-cream pt-24 md:pt-32 pb-16 md:pb-20">
             <SEO title="Checkout" />
-            <div className="container mx-auto px-4">
+            <div className="container mx-auto px-3 md:px-4">
                 {/* Header */}
                 <div className="mb-8">
                     <button
@@ -135,7 +135,7 @@ const Checkout: React.FC = () => {
                         <ArrowLeft size={14} />
                         Back to Cart
                     </button>
-                    <h1 className="font-serif text-4xl text-chocolate">Checkout</h1>
+                    <h1 className="font-serif text-3xl md:text-4xl text-chocolate">Checkout</h1>
                 </div>
 
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -145,7 +145,7 @@ const Checkout: React.FC = () => {
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
-                            className="bg-white/80 backdrop-blur-xl rounded-2xl p-6 border border-white/50 shadow-lg"
+                            className="bg-white/80 backdrop-blur-xl rounded-2xl p-4 md:p-6 border border-white/50 shadow-lg"
                         >
                             <div className="flex items-center gap-2 mb-4">
                                 <Tag size={20} className="text-chocolate" />
@@ -221,7 +221,7 @@ const Checkout: React.FC = () => {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.1 }}
-                            className="bg-white/80 backdrop-blur-xl rounded-2xl p-6 border border-white/50 shadow-lg"
+                            className="bg-white/80 backdrop-blur-xl rounded-2xl p-4 md:p-6 border border-white/50 shadow-lg"
                         >
                             <h2 className="font-serif text-xl text-chocolate font-bold mb-4">Delivery Details</h2>
 
@@ -263,17 +263,29 @@ const Checkout: React.FC = () => {
                         </motion.div>
 
                         {/* WhatsApp Checkout Button - Mobile */}
-                        <motion.button
+                        <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.2 }}
-                            onClick={handleWhatsAppCheckout}
-                            disabled={!name.trim() || !address.trim()}
-                            className="w-full lg:hidden bg-[#25D366] text-white py-4 rounded-xl font-bold text-lg shadow-lg hover:brightness-110 transition-all flex items-center justify-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed"
+                            className="lg:hidden"
                         >
-                            <MessageCircle size={24} />
-                            Checkout on WhatsApp
-                        </motion.button>
+                            <button
+                                onClick={handleWhatsAppCheckout}
+                                disabled={!name.trim() || !address.trim()}
+                                className={`w-full py-4 rounded-xl font-bold text-lg shadow-lg transition-all flex items-center justify-center gap-3 ${name.trim() && address.trim()
+                                        ? 'bg-[#25D366] text-white hover:brightness-110 active:scale-95'
+                                        : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                                    }`}
+                            >
+                                <MessageCircle size={24} />
+                                {name.trim() && address.trim() ? 'Checkout on WhatsApp' : 'Fill Details Above to Checkout'}
+                            </button>
+                            {(!name.trim() || !address.trim()) && (
+                                <p className="text-center text-amber-600 text-xs mt-2 font-medium">
+                                    ⚠️ Please enter your name and delivery address
+                                </p>
+                            )}
+                        </motion.div>
                     </div>
 
                     {/* Right: Order Summary */}
@@ -283,7 +295,7 @@ const Checkout: React.FC = () => {
                         transition={{ delay: 0.15 }}
                         className="lg:sticky lg:top-24 h-fit"
                     >
-                        <div className="bg-white/80 backdrop-blur-xl rounded-2xl p-6 border border-white/50 shadow-xl">
+                        <div className="bg-white/80 backdrop-blur-xl rounded-2xl p-4 md:p-6 border border-white/50 shadow-xl">
                             <h2 className="font-serif text-xl text-chocolate font-bold mb-4">Order Summary</h2>
 
                             {/* Items */}

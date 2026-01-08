@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { ShoppingBag, User } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useStore } from '../context/StateContext';
-import logoImage from '../logo.png';
+
 
 const Navbar: React.FC = () => {
-  const { toggleCart, cart, settings, navigate } = useStore();
+  const { cart, settings, navigate } = useStore();
   const [scrolled, setScrolled] = useState(false);
   const { announcement } = settings;
 
@@ -47,14 +47,13 @@ const Navbar: React.FC = () => {
       >
         <div className="flex justify-between items-center px-4 md:px-6">
           <button onClick={() => navigate('/')} className="flex items-center gap-2 group">
-            <div className="relative w-10 h-10 md:w-12 md:h-12 flex-shrink-0 overflow-hidden">
-              <img
-                src={logoImage}
-                alt="Mousse & Melts Logo"
-                className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500 drop-shadow-sm"
-              />
-            </div>
-            <span className="font-serif italic text-lg md:text-xl font-bold text-chocolate tracking-tight hidden sm:inline">
+            {/* Brand Logo Image - styled to appear as inline text */}
+            <img
+              src="/mm-brand-logo.png"
+              alt="Mousse & Melts"
+              className="h-10 md:h-12 w-auto object-contain flex-shrink-0 group-hover:scale-105 transition-transform duration-300 drop-shadow-sm"
+            />
+            <span className="font-serif italic text-sm sm:text-lg md:text-xl font-bold text-chocolate tracking-tight">
               Mousse & Melts
             </span>
           </button>
@@ -64,7 +63,7 @@ const Navbar: React.FC = () => {
               <User size={20} />
             </button>
             <button
-              onClick={() => toggleCart(true)}
+              onClick={() => navigate('/cart')}
               className="relative p-2 rounded-full hover:bg-chocolate/5 transition-colors active:scale-95 transition-transform"
             >
               <ShoppingBag size={24} className="text-chocolate" />
